@@ -6,6 +6,11 @@
     </head>
     <body>
         <div>Admin de usuarios</div>
+        <?php 
+            foreach($this->model->get_all() as $r): 
+                echo $r.'<br>';    
+            endforeach;
+        ?>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

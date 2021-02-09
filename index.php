@@ -1,9 +1,14 @@
 <?php
-    $login=true;
-    // con sesion iniciada el controlador es User
-    // sin sesion iniciada el controlador es Home
-
-    $controller = $login ? "User" : "Home";
+    // set null si se encuentra en el root del server
+    $app_folder = 'users';
+    // obtenemos los elementos de la url
+    // descartamos los nulos
+    $args = array_values(array_filter(explode("/", $_SERVER["REQUEST_URI"]), function($value) { return !is_null($value) && $value !== ''; }));
+    //echo print_r($args);
+    
+    // identificamos el controlador y la acción a ejecutar
+    $controller = $app_folder ? (count($args)>1 ? $args[1] : "home") : (count($args)>0 ? $args[0]: "home");
+    $action = $app_folder ? (count($args)>2 ? explode("?", $args[2])[0] :  "index") : (count($args)>1 ? explode("?", $args[1])[0]: "index");
     
     $controllerFile = $controller. '.php';
     $controllerClass = $controller. 'Controller';
@@ -11,5 +16,5 @@
     require 'controller/'. $controllerFile;
     $controller = $controllerClass;
     $controller = new $controller();
-    $controller->Index();
+    $controller->$action();
 ?>
