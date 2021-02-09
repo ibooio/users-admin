@@ -6,7 +6,7 @@
     </head>
     <body>
         Pantalla de Login
-        <form action="user/index" method="test">
+        <form action="user" method="test">
             <input type="submit" value="enviar">
         </form>
     </body>
