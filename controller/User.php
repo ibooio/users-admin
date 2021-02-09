@@ -1,7 +1,10 @@
 <?php
     class UserController{
-        public function index(){
-            echo 'UserIndex';
+        public function __CONSTRUCT(){
+        }
+    
+        public function Index(){
+            require_once 'view/user/index.php';
         }
     }
 ?>

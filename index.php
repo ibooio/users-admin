@@ -1,5 +1,5 @@
 <?php
-    $login=false;
+    $login=true;
 
     // con sesion iniciada el controlador es User
     // sin sesion iniciada el controlador es Home
