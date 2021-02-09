@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Administrador de usuarios</title>
-        <link rel="stylesheet" href="assets/css/app.css" type="text/css">
-    </head>
-    <body>
-        <div>Second</div>
-        <script src="assets/js/app.js"></script>
-    </body>
-</html>
+<?php
+    $login=false;
+
+    // con sesion iniciada el controlador es User
+    // sin sesion iniciada el controlador es Home
+
+    $controller = $login ? "User" : "Home";
+    
+    $controllerFile = $controller. '.php';
+    $controllerClass = $controller. 'Controller';
+
+    require 'controller/'. $controllerFile;
+    $controller = $controllerClass;
+    $controller = new $controller();
+    $controller->Index();
+?>
