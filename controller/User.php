@@ -9,54 +9,35 @@
         }
 
         public function Index(){
-            //test database
-            // insert
-            $this->model->name = "name";
-            $this->model->last_name = "last_name";
-            $this->model->email ="email";
-            $this->model->password ="password";
-            $this->model->insert();
-            // update
-            $this->model->id=4;
-            $this->model->name = 'update1';
-            $this->model->last_name = 'update2';
-            $this->model->email = 'update3';
-            $this->model->password = 'update4';
-            $this->model->update();
-
-            // delete
-            $this->model->id=6;
-            $this->model->delete();
-
             require_once 'view/user/index.php';
         }
 
-        // retorna todos los usuarios
+        // get all users
         public function get_all(){
             $result = $this->model->get_all();
             echo json_encode($result);
         }
 
-        // insert un nuevo usuario
+        // insert user
         public function insert(){
             $this->model->name = $_POST["name"];
             $this->model->last_name = $_POST["last_name"];
-            //$this->model->email = $_POST["email"];
-            $this->model->email ="test";
-            $this->model->password ="test2";
-            $this->model->insert();            
+            $this->model->email = $_POST["email"];
+            $this->model->password = $_POST["password"];
+            $this->model->insert();
         }
 
-        //  update usuario
+        //  update user
         public function update(){
             $this->model->id = $_POST["id"];
             $this->model->name = $_POST["name"];
             $this->model->last_name = $_POST["last_name"];
             $this->model->email = $_POST["email"];
+            $this->model->password = $_POST["password"];
             $this->model->update();
         }
 
-        //  delete usuario
+        //  delete user
         public function delete(){
             $id = $_POST["id"];
             $this->model->delete($id);
