@@ -3,29 +3,30 @@
         private $model;
         public function __CONSTRUCT(){
             require_once 'model/UserModel.php';
-            $this->model =  new UserModel();
+            require_once 'database/Database.php';
+            $db = new Database();
+            $this->model =  new UserModel( $db );
         }
-    
+
         public function Index(){
             //test database
             // insert
-            /*$this->model->name = "name";
+            $this->model->name = "name";
             $this->model->last_name = "last_name";
             $this->model->email ="email";
             $this->model->password ="password";
-            $this->model->insert();*/
-            
+            $this->model->insert();
             // update
-            /*$this->model->id=3;
+            $this->model->id=4;
             $this->model->name = 'update1';
             $this->model->last_name = 'update2';
             $this->model->email = 'update3';
             $this->model->password = 'update4';
-            $this->model->update();*/
+            $this->model->update();
 
             // delete
-            /*$this->model->id=3;
-            $this->model->delete();*/
+            $this->model->id=6;
+            $this->model->delete();
 
             require_once 'view/user/index.php';
         }

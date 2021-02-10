@@ -1,13 +1,14 @@
 <?php
     class UserModel{
+        private $database;
         public $id ;
         public $name;
         public $last_name;
         public $email;
         public $password;
 
-        function __construct() {  
-            require_once 'database/Database.php';
+        function __construct($database) {  
+            $this->database = $database;
         }
     
         public function get_single(){
@@ -21,7 +22,6 @@
         }
 
         public function insert(){
-            $db = new Database();
             $sql = "INSERT INTO users (name, last_name, email, password) VALUES (:name, :last_name, :email, :password)";
             $data = [
                 'name' => $this->name,
@@ -29,11 +29,10 @@
                 'email' => $this->email,
                 'password' => $this->password,
             ];
-            $db->run($sql, $data);
+            $this->database->run($sql, $data);
         }
 
         public function update(){
-            $db = new Database();
             $sql = "UPDATE users SET name=:name, last_name=:last_name, email=:email, password=:password WHERE id=:id";
             $data = [
                 'name' => $this->name,
@@ -42,17 +41,13 @@
                 'password' => $this->password,
                 'id'=>$this->id
             ];
-            $db->run($sql, $data);
-
-            
-            //$sql = "DELETE FROM `table` WHERE id = ?";        
+            $this->database->run($sql, $data);
         }
 
         public function delete(){
-            $db = new Database();
             $sql = "DELETE FROM users WHERE id=:id";
             $data = [ 'id'=>$this->id ];
-            $db->run($sql, $data);
+            $this->database->run($sql, $data);
         }
 
     }
