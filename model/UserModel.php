@@ -16,9 +16,8 @@
         }
 
         public function get_all(){
-            return array(
-                1,2,3,4,5
-            );
+            $sql = "Select * FROM users";
+            return $this->database->select($sql);
         }
 
         public function insert(){
@@ -29,7 +28,7 @@
                 'email' => $this->email,
                 'password' => $this->password,
             ];
-            $this->database->run($sql, $data);
+            $this->database->insert($sql, $data);
         }
 
         public function update(){
@@ -41,13 +40,13 @@
                 'password' => $this->password,
                 'id'=>$this->id
             ];
-            $this->database->run($sql, $data);
+            $this->database->update($sql, $data);
         }
 
         public function delete(){
             $sql = "DELETE FROM users WHERE id=:id";
             $data = [ 'id'=>$this->id ];
-            $this->database->run($sql, $data);
+            $this->database->delete($sql, $data);
         }
 
     }

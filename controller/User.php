@@ -14,8 +14,9 @@
 
         // get all users
         public function get_all(){
-            $result = $this->model->get_all();
-            echo json_encode($result);
+            echo 'aaa';
+            //$result = $this->model->get_all();
+            //echo json_encode($result);
         }
 
         // insert user

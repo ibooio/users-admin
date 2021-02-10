@@ -19,10 +19,24 @@ class Database
         $this->pdo = null;
     }
 
-    public function run($sql, $data){
+    private function run_generic($sql, $data){
         $this->_open();
-        $this->pdo->prepare($sql)->execute($data);
+        $st=  $this->pdo->prepare($sql)->execute($data);
         $this->_close();
+    }
+
+    public function insert($sql, $data){  $this->run_generic($sql, $data); }
+    public function update($sql, $data){  $this->run_generic($sql, $data); }
+    public function delete($sql, $data){  $this->run_generic($sql, $data); }
+    public function select($sql){
+        $this->_open();
+        $st = $this->pdo->query($sql);
+        $result= array();
+        while ($row = $st->fetch(PDO::FETCH_OBJ)) {
+            $result[]=$row;
+        }
+        $this->_close();
+        return $result;
     }
 
 }
