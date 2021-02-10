@@ -8,7 +8,7 @@
     // identificamos el controlador y la acción a ejecutar
     $controller = $app_folder ? (count($args)>1 ?  explode("?", $args[1])[0] : "home") : (count($args)>0 ?  explode("?", $args[2])[0]: "home");
     $action = $app_folder ? (count($args)>2 ? explode("?", $args[2])[0] :  "index") : (count($args)>1 ? explode("?",$args[1]): "index");
-    
+
     $controllerFile = $controller. '.php';
     $controllerClass = $controller. 'Controller';
 

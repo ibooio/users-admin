@@ -34,9 +34,15 @@
     }
 
     ajax.get("user/get_all", test);
+    function init(){
+        var form = document.querySelector("#edit");
+        form.addEventListener("submit", function(e){
+            e.preventDefault();    //stop form from submitting
+            var data = new FormData(form);
+            ajax.post("user/insert", test2, data);
+        });
+    }
 
-    var data = new FormData();
-    data.append("nombre", "Gabriel");
-    ajax.post("user/test_post", test2, data);
+    init();
 
 })();

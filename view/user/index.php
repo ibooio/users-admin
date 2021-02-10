@@ -7,10 +7,11 @@
     <body>
         <div>Admin de usuarios</div>
         <?php 
-            foreach($this->model->get_all() as $r): 
+            /*foreach($this->model->get_all() as $r): 
                 echo $r.'<br>';    
-            endforeach;
+            endforeach;*/
         ?>
+        <?php require_once 'view/user/edit.php'; ?>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

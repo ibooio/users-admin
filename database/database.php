@@ -7,7 +7,6 @@ class Database
     }
 
     private function _open(){
-
         try {
             $datasource = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
             $this->pdo = new PDO($datasource, DB_USER, DB_PASS);
@@ -18,24 +17,16 @@ class Database
         {
             die ($e->getMessage());
         }
-
     }
 
     private function _close(){
         $this->pdo = null;
     }
-    
-    public function test(){
-        $this->_open();
-        $query = $this->pdo->prepare("SELECT * FROM users");
-        $query->execute();
-        while($r = $query->fetch(PDO::FETCH_OBJ)){
-            echo "Id: " . $r->id . "<br>";
-            echo "Nombre: " . $r->name . "<br>";
-        }
-        $this->_close();
-    
 
+    public function run($sql, $data){
+        $this->_open();
+        $this->pdo->prepare($sql)->execute($data);
+        $this->_close();
     }
 
 }
