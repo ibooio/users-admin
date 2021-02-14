@@ -28,7 +28,7 @@
                 'email' => $this->email,
                 'password' => $this->password,
             ];
-            $this->database->insert($sql, $data);
+            return $this->database->insert($sql, $data);
         }
 
         public function update(){

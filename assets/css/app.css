@@ -2,3 +2,6 @@ body{
     color: red;
 }
 
+#form-box{
+    display: none;
+}
