@@ -1,7 +1,109 @@
 body{
-    color: red;
+    font-family: 'Roboto', sans-serif;   
+    box-sizing: content-box; 
 }
 
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.title{
+    text-align: center;
+    font-size: 1.2em;
+}
+
+table, tr, td, th
+{
+    border-collapse:collapse;
+}
+
+table th{
+    text-align: center;
+    line-height: 2em;
+    background-color: #dad8d8;
+}
+
+table th, table td{
+    border: 1px solid #ccc;
+}
+
+table td{
+    min-width: 200px;
+    padding-left: 10px;
+}
+
+.btn{
+    width: 120px;
+    text-align: center;
+    color: #fff;
+    padding: 5px 2px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: rgb(66, 66,66) 1px 2px 3px 1px;
+    margin: 5px;
+    text-transform: uppercase;
+    font-size: .8em;
+    cursor: pointer;
+}
+
+.btn.add{
+    background-color: #4caf50;
+}
+
+.btn.edit{
+    background-color: #1f79c1;
+}
+
+.btn.delete{
+    background-color: #f44336;
+}
+
+
+table{
+
+}
 #form-box{
     display: none;
+}
+
+#form-box form{
+    margin: 0 auto;
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 40px 80px 40px 40px;
+    border-radius: 15px;
+}
+
+#form-box label, #form-box input{
+    width: 100%;
+}
+
+#form-box input{
+    margin: 2px 0 15px 0;
+    font-size: 1.2em;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+#form-box input:focus{
+    outline: none;
+}
+
+#form-box input[type="submit"], #form-box input[type="button"]{
+    width: 45%;
+    margin-left: 4%;
+    font-size: .85em;
+}
+
+#form-box input[type="submit"]{
+    background-color: #4caf50;
+}
+
+#form-box input[type="button"]{
+    background-color: #f44336;
+}
+
+#form-box label{
+    font-size: 0.85em;
 }

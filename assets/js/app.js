@@ -33,21 +33,22 @@
 
     const form={
         el: false,
-        actualId: false,
+        data: false,
         init: function(){
             form.el = document.getElementById('form');
             form.attachEvents();
         },
         attachEvents: function(){
-            form.el.addEventListener("submit", function(e){
+            form.el.addEventListener('submit', function(e){
                 e.preventDefault();    //stop form from submitting
                 var data = new FormData(form.el);
-                data.append('id', form.actualId);
+                data.append('id', form.data.id);
 
-                var operation = form.actualId ? 'update' : 'insert';
+                console.log(form.data);
+
+                var operation = form.data.id ? 'update' : 'insert';
                 var url =  'user/' + operation;
                 ajax.post(url, function(response){
-                    console.log(response);
                     if( operation == 'insert' ){
                         table.add(response);
                     }
@@ -58,10 +59,23 @@
                     fade.out(form.el.parentElement, function() {
                         fade.in(table.el.parentElement); 
                     });
-                    form.actualId = false;
+                    form.data = false;
                 }, data);
             });
+
+            form.el.querySelectorAll('[type="button"]')[0].addEventListener('click', function(e){
+                fade.out(form.el.parentElement, function() {
+                    fade.in(table.el.parentElement); 
+                });
+            });
         },
+        setData: function(o){
+            form.data = o;
+            form.el.querySelectorAll('[name="name"]')[0].value= o ? o.name : '';
+            form.el.querySelectorAll('[name="last_name"]')[0].value= o ? o.last_name : '';
+            form.el.querySelectorAll('[name="email"]')[0].value= o ? o.email : '';
+            form.el.querySelectorAll('[name="password"]')[0].value= o ? o.password : '';
+        }
     }
 
 
@@ -113,9 +127,17 @@
                 tr.append(td);
             }
         },
+        getItemById: function(id){
+            for(var i=0; i< table.data.length; i++){
+                if( table.data[i].id === id ){
+                    return table.data[i];
+                }
+            }
+        },
         attachEvents: function(){
             var btnAdd= document.getElementsByClassName('btn add')[0];
             btnAdd.addEventListener('click', function(e){
+                form.setData(null);
                 fade.out(table.el.parentElement, function() {
                     fade.in(form.el.parentElement); 
                 });
@@ -124,12 +146,12 @@
             document.querySelector('body').addEventListener('click', function(e) {
                 if ( e.target.classList.contains('btn') ) {
                     if ( e.target.classList.contains('edit') ) {
-                        form.actualId = e.target.parentElement.parentElement.getAttribute('data-id');
+                        form.setData( table.getItemById(e.target.parentElement.parentElement.getAttribute('data-id')) );
                         fade.out(table.el.parentElement, function() {
                             fade.in(form.el.parentElement); 
                         });
                     }
-                    else{
+                    else if(e.target.classList.contains('delete')){
 
                         var data = new FormData(form.el);
                         var id= e.target.parentElement.parentElement.getAttribute('data-id');
@@ -139,7 +161,6 @@
                             fade.out(form.el.parentElement, function() {
                                 fade.in(table.el.parentElement); 
                             });
-                            form.actualId = false;
                         }, data);
 
                     }
@@ -151,6 +172,7 @@
             table.drawBody();
         },
         update: function(o){
+            // TODOX test getItembyId
             for(var i=0; i< table.data.length; i++){
                 if( table.data[i].id === o.id ){
                     table.data[i] = o;
@@ -159,6 +181,7 @@
             table.drawBody();
         },
         delete: function(o){
+            console.log(o);
             var index = table.data.map(obj => obj.id).indexOf(o.id);
             table.data.splice(index, 1);
             table.drawBody();
@@ -176,7 +199,7 @@
                 //callback();
             }
             else{
-                setTimeout(fade,80);
+                setTimeout(fade,40);
             }
         })();
        },
@@ -191,7 +214,7 @@
                 callback();
             }
             else{
-                setTimeout(fade,80);
+                setTimeout(fade,40);
             }
         })();
        }

@@ -43,7 +43,7 @@
         public function delete(){
             $this->model->id = $_POST["id"];
             $this->model->delete();
-            echo json_encode(true0);
+            echo json_encode(true);
         }
 
     }
