@@ -22,6 +22,7 @@
             $result = $this->database->select($sql);
             foreach($result as $r){
                 $r->id = $this->crypt('openssl_encrypt', $r->id);
+                $r->password = '';
             }
             return $result;
         }
