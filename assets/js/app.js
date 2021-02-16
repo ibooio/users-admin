@@ -73,7 +73,7 @@
             form.el.querySelectorAll('[name="name"]')[0].value= o ? o.name : '';
             form.el.querySelectorAll('[name="last_name"]')[0].value= o ? o.last_name : '';
             form.el.querySelectorAll('[name="email"]')[0].value= o ? o.email : '';
-            form.el.querySelectorAll('[name="password"]')[0].value= o ? o.password : '';
+            form.el.querySelectorAll('[name="password"]')[0].value= o ? 'FALSE' : '';
         }
     }
 
