@@ -68,7 +68,7 @@
         public function delete(){
             $this->model->id = $_POST["id"];
             $this->model->delete();
-            $response = (object)array('success'=>true, 'message'=>'Registro eliminado con éxito', $data=>false);
+            $response = (object)array('success'=>true, 'message'=>'Registro eliminado con éxito', 'data'    =>false);
             echo json_encode($response);
         }
 

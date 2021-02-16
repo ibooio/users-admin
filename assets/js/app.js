@@ -169,9 +169,6 @@
                             data.append('id',  id);
                             ajax.post(baseUrl + 'user/delete', function(response){
                                 table.delete(id);
-                                fade.out(form.el.parentElement, function() {
-                                    fade.in(table.el.parentElement); 
-                                });
                             }, data);
                         });
                     }
