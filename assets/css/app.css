@@ -3,6 +3,52 @@ body{
     box-sizing: content-box; 
 }
 
+body.home{
+    background-color: #607d8b;
+}
+
+label, input{
+    width: 100%;
+    box-sizing: content-box;
+}
+
+label{
+    font-size: 0.85em;
+}
+
+
+input:focus{
+    outline: none;
+}
+
+/* login */
+#form-login-box form{
+    margin: 0 auto;
+    margin-top: 10%;
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 40px 80px 40px 40px;
+    border-radius: 15px;
+}
+
+#form-login-box label{
+    color: #f0f0f0;
+}
+
+#form-login-box input{
+    margin: 2px 0 15px 0;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    height: 40px;
+}
+
+#form-login-box input[type="submit"]{
+    width: 100%;
+    border-radius: 0px;
+}
+
+
+/* users admin */
 .container{
     max-width: 1000px;
     margin: 0 auto;
@@ -62,10 +108,6 @@ table{
     border-radius: 15px;
 }
 
-#form-box label, #form-box input{
-    width: 100%;
-}
-
 #form-box input{
     margin: 2px 0 15px 0;
     font-size: 1.2em;
@@ -73,27 +115,10 @@ table{
     padding: 5px 10px;
 }
 
-#form-box input:focus{
-    outline: none;
-}
-
 #form-box input[type="submit"], #form-box input[type="button"]{
-    width: 45%;
-    margin-left: 4%;
     font-size: .85em;
 }
 
-#form-box input[type="submit"]{
-    background-color: #4caf50;
-}
-
-#form-box input[type="button"]{
-    background-color: #f44336;
-}
-
-#form-box label{
-    font-size: 0.85em;
-}
 /* messages */
 #override{
     height: 100vh;

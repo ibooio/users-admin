@@ -8,7 +8,7 @@
         <input type="text" name="email" value="">
         <label>Contraseña</label>
         <input type="text" name="password" value="">
-        <input type="submit" class="btn" value="Enviar">
-        <input type="button" class="btn" value="Cancelar">
+        <input type="submit" class="btn green" value="Enviar">
+        <input type="button" class="btn red" value="Cancelar">
     </form>
 </div>
