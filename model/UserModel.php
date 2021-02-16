@@ -49,5 +49,14 @@
             $this->database->delete($sql, $data);
         }
 
+        public function validate(){
+            $sql = "Select COUNT(id) as count FROM users WHERE email='". $this->email ."'";
+            if( $this->id ){
+                $sql.= " and id !='". $this->id ."'";
+            }
+            $result =  $this->database->select($sql);          
+            return $result[0]->count == 0 ? true : false;
+        }
+
     }
 ?>

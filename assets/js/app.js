@@ -36,25 +36,29 @@
             form.el.addEventListener('submit', function(e){
                 e.preventDefault();    //stop form from submitting
                 var data = new FormData(form.el);
-                data.append('id', form.data.id);
-
-                console.log(form.data);
-
-                var operation = form.data.id ? 'update' : 'insert';
+                if( form.data )
+                    data.append('id', form.data.id);
+                var operation = form.data && form.data.id ? 'update' : 'insert';
                 var url =  'user/' + operation;
                 ajax.post(url, function(response){
-                    message.info.show('Operación realizada con éxito','success');
-                    if( operation == 'insert' ){
-                        table.add(response);
+                    if( response.success ){
+                        message.info.show(response.message,'success');
+                        if( operation == 'insert' ){
+                            table.add(response.data);
+                        }
+                        else{
+                            table.update(response.data);
+                        }
+    
+                        fade.out(form.el.parentElement, function() {
+                            fade.in(table.el.parentElement); 
+                        });
+                        form.data = false;
                     }
                     else{
-                        table.update(response);
+                        message.info.show(response.message,'error');
                     }
-
-                    fade.out(form.el.parentElement, function() {
-                        fade.in(table.el.parentElement); 
-                    });
-                    form.data = false;
+                    
                 }, data);
             });
 
