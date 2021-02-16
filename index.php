@@ -5,7 +5,8 @@
     }
 
     function config(){
-        return ['app_folder'=>'users-admin'];
+        //return ['app_folder'=>'otrasubcarpeta/users']; <-- ejemplo con otra subcarpeta
+        return ['app_folder'=>'users'];
     }
     
     function base_url($url){
@@ -23,21 +24,15 @@
 
     }
     $config =config();
-
-    // set null si se encuentra en el root del server    
-    // obtenemos los elementos de la url
-    // descartamos los nulos
+    $app_folder_parts = !$config['app_folder'] ? 0 : count( explode("/", $config['app_folder']) );
     $args = array_values(array_filter(explode("/", $_SERVER["REQUEST_URI"]), function($value) { return !is_null($value) && $value !== ''; }));    
-    $controller = !$config['app_folder'] ? ( count($args)>0 ? explode("?", $args[0])[0] : "home" ): ( count($args)>1 ? explode("?", $args[1])[0] : "home" );
-    $action =     !$config['app_folder'] ? ( count($args)>1 ? explode("?", $args[1])[0] : "index" ): ( count($args)>2 ? explode("?", $args[2])[0] : "index" );
-    //$controller = $config['app_folder'] ? (  count($args)>2 ?  explode("?", $args[1])[0] : "home" ) : (count($args)>0 ?  explode("?", $args[1])[0]: "home");
-    //$action =     $config['app_folder'] ? (  count($args)>2 ? explode("?", $args[2])[0] :  "index" ) : (count($args)>1 ?  explode("?", $args[1]): "main");
-    //echo $args[2];
-    //echo  $controller . ' ' . $action;
-    //echo  $action;
-    $controllerFile = $controller. '.php';
-    $controllerClass = $controller. 'Controller';
 
+    $controller = count($args)>$app_folder_parts ? explode("?", $args[$app_folder_parts])[0] : "home";
+    $action =     count($args)> ($app_folder_parts + 1) ? explode("?", $args[$app_folder_parts+1])[0] : "index";
+    
+
+    $controllerFile =  ucfirst($controller). '.php';
+    $controllerClass = ucfirst($controller). 'Controller';
 
     require 'controller/'. $controllerFile;
     $controller = $controllerClass;

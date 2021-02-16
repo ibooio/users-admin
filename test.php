@@ -1,6 +1,10 @@
 <?php 
-    require_once("database/database.php");  
-    $database = new Database();
-    echo 'test<br>';
-    $database->test();
+    $action = 'index';
+    $controllerFile =  'Home.php';
+    $controllerClass = 'HomeController';
+
+    require 'controller/'. $controllerFile;
+    $controller = $controllerClass;
+    $controller = new $controller();
+    $controller->$action();
 ?>
