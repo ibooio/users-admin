@@ -10,9 +10,9 @@
             <form action="" method="post" autocomplete="off">
                 <div><?php echo $this->error_message ;?></div>
                 <label>E-mail</label>
-                <input type="email" name="email" value="" placeholder="E-mail">
+                <input type="email" name="email" value="" placeholder="E-mail" required>
                 <label>Contraseña</label>
-                <input type="password" name="password" value="" placeholder="Contraseña">
+                <input type="password" name="password" value="" placeholder="Contraseña" required>
                 <input type="submit" class="btn green" value="ENTRAR">
             </form>
         </div>
