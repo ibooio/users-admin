@@ -6,8 +6,9 @@
     </head>
     <body class="home">
         <div id="form-login-box">
-        <?php echo $this->error_message ;?>
+        
             <form action="" method="post">
+                <div><?php echo $this->error_message ;?></div>
                 <label>E-mail</label>
                 <input type="email" name="email" value="" placeholder="E-mail">
                 <label>Contraseña</label>

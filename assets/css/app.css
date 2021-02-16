@@ -32,6 +32,13 @@ input:focus{
     border-radius: 15px;
 }
 
+#form-login-box form div{
+    color: #ff7e56;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+
 #form-login-box label{
     color: #f0f0f0;
 }
