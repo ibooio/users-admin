@@ -7,7 +7,7 @@
     <body class="home">
         <div id="form-login-box">
         
-            <form action="" method="post">
+            <form action="" method="post" autocomplete="off">
                 <div><?php echo $this->error_message ;?></div>
                 <label>E-mail</label>
                 <input type="email" name="email" value="" placeholder="E-mail">
