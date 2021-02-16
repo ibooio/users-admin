@@ -5,7 +5,7 @@
     }
 
     function config(){
-        return ['app_folder'=>'users'];
+        return ['app_folder'=>'users-admin'];
     }
     
     function base_url($url){
