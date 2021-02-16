@@ -25,12 +25,6 @@
         }
     }
 
-
-    function init(){
-        table.init();
-        form.init();
-    }
-
     const form={
         el: false,
         data: false,
@@ -49,6 +43,7 @@
                 var operation = form.data.id ? 'update' : 'insert';
                 var url =  'user/' + operation;
                 ajax.post(url, function(response){
+                    message.info.show('Operación realizada con éxito','success');
                     if( operation == 'insert' ){
                         table.add(response);
                     }
@@ -77,7 +72,6 @@
             form.el.querySelectorAll('[name="password"]')[0].value= o ? o.password : '';
         }
     }
-
 
     const table={
         el: false,
@@ -115,12 +109,14 @@
                 btnEdit = document.createElement('div');
                 btnEdit.classList.add('btn');
                 btnEdit.classList.add('edit');
+                btnEdit.classList.add('blue');
                 btnEdit.append('Editar');
                 td.append(btnEdit);
 
                 btnDelete = document.createElement('div');
                 btnDelete.classList.add('btn');
                 btnDelete.classList.add('delete');
+                btnDelete.classList.add('red');
                 btnDelete.append('Eliminar');
                 td.append(btnDelete);
                 
@@ -153,16 +149,17 @@
                     }
                     else if(e.target.classList.contains('delete')){
 
-                        var data = new FormData(form.el);
-                        var id= e.target.parentElement.parentElement.getAttribute('data-id');
-                        data.append('id',  id);
-                        ajax.post('user/delete', function(response){
-                            table.delete(id);
-                            fade.out(form.el.parentElement, function() {
-                                fade.in(table.el.parentElement); 
-                            });
-                        }, data);
-
+                        message.confirm.show(function(){
+                            var data = new FormData(form.el);
+                            var id= e.target.parentElement.parentElement.getAttribute('data-id');
+                            data.append('id',  id);
+                            ajax.post('user/delete', function(response){
+                                table.delete(id);
+                                fade.out(form.el.parentElement, function() {
+                                    fade.in(table.el.parentElement); 
+                                });
+                            }, data);
+                        });
                     }
                 }
             }, true);
@@ -185,6 +182,59 @@
             var index = table.data.map(obj => obj.id).indexOf(o.id);
             table.data.splice(index, 1);
             table.drawBody();
+        }
+    }
+
+    const message = {
+        override:{
+            el: false
+        },
+        confirm:{
+            el: false,
+            callback: false,
+            init: function(){
+                message.confirm.el = document.getElementById('message-confirm');
+                message.confirm.attachEvents();
+            },
+            attachEvents: function(){
+                var btnConfirm= message.confirm.el.getElementsByClassName('btn confirm')[0];
+                btnConfirm.addEventListener('click', function(e){
+                    message.confirm.callback();
+                    message.confirm.hide();
+                }); 
+                var btnCancel= message.confirm.el.getElementsByClassName('btn cancel')[0];
+                btnCancel.addEventListener('click', function(e){
+                    message.confirm.hide();
+                }); 
+            },
+            show: function(callback){
+                message.confirm.callback = callback;
+                message.confirm.el.style.display="block";
+            },
+            hide: function(){
+                message.confirm.el.style.display="none";
+            }
+        },
+        info: {
+            el: false,
+            init: function(){
+                message.info.el = document.getElementById('message-info');
+            },
+            show: function(text, style){
+                message.info.el.style.display="block";
+                message.info.el.classList.add(style=='success' ? 'green' : 'red');
+                message.info.el.classList.remove(style=='success' ? 'red' : 'green');
+                message.info.el.getElementsByClassName('content')[0].innerHTML=text;
+                var timeout = setTimeout(function(){ message.info.hide(); clearTimeout(timeout);  }, 2000);
+            },
+            hide: function(){
+                message.info.el.style.display="none";
+            }
+        },
+        init: function(){
+            message.override.el = document.getElementById('override');
+            message.confirm.init();
+            message.info.init();
         }
     }
 
@@ -219,6 +269,13 @@
         })();
        }
     }
+
+    function init(){
+        table.init();
+        form.init();
+        message.init();
+    }
+
 
     init();
 

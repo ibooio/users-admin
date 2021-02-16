@@ -10,7 +10,7 @@
         <div class="container">
             <div class="title">Admin de usuarios</div>
             <div>
-                <div class="btn add">Añadir</div>
+                <div class="btn add green">Añadir</div>
                 <table id="table">
                     <thead>
                         <tr>
@@ -39,6 +39,7 @@
             </div>
         </div>
         <?php require_once 'view/user/edit.php'; ?>
+        <?php require_once 'view/user/messages.php'; ?>
         <script src="assets/js/app.js"></script>
     </body>
 </html>

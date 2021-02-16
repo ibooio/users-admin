@@ -47,19 +47,6 @@ table td{
     cursor: pointer;
 }
 
-.btn.add{
-    background-color: #4caf50;
-}
-
-.btn.edit{
-    background-color: #1f79c1;
-}
-
-.btn.delete{
-    background-color: #f44336;
-}
-
-
 table{
 
 }
@@ -106,4 +93,53 @@ table{
 
 #form-box label{
     font-size: 0.85em;
+}
+/* messages */
+#override{
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    position: fixed;
+    background-color: rgba(0,0,0,.8);
+    display: none;
+}
+
+.message, .message-confirm{
+    margin: 0 auto;
+    width: max-content;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    display: none;
+}
+
+.message > .header, .message-confirm > .header{
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message > .content, .message-confirm > .content{
+    font-size: .9em;
+    padding: 10px 20px;
+}
+
+.message-confirm > .btns{
+    text-align: center;
+}
+.green{
+    background-color: #4caf50;
+    color: white;
+}
+
+.red{
+    background-color: #f44336;
+    color: white;
+}
+
+.blue{
+    background-color: #1f79c1;
+    color: white;
 }
