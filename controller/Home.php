@@ -13,7 +13,8 @@
         public function index(){
             $this->error_message = '';
             if( @$_SESSION['user'] ){
-                header('Location: ' . base_url('user'));
+                header('Location: ' . base_url('user/index'));
+                exit();
             }
             else if (  !empty($_POST)){
                 $this->model->email = $_POST['email'];
@@ -22,7 +23,8 @@
                 $result = $this->model->login(); 
                 if( $result ){
                     $_SESSION['user'] = $result->name . ' ' . $result->last_name;
-                    header('Location: ' . base_url('user'));
+                    header('Location: ' . base_url('user/index'));
+                    exit();
                 }
                 else{
                     $this->error_message = 'Datos de acces incorrectos';
@@ -36,7 +38,8 @@
         public function logout(){
             session_unset();
             session_destroy();
-            header('Location: ' . base_url());
+            header('Location: ' . base_url(''));
+            exit();
         }
     }
 ?>

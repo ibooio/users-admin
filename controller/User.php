@@ -12,7 +12,8 @@
 
         public function index(){
             if( !@$_SESSION['user'] ){
-                header('Location: ' . base_url());
+                header('Location: ' . base_url(''));
+                exit();
             }
             require_once 'view/user/index.php';
         }
