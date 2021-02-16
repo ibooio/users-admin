@@ -1,6 +1,7 @@
 body{
     font-family: 'Roboto', sans-serif;   
     box-sizing: content-box; 
+    margin: 0;
 }
 
 body.home{
@@ -49,6 +50,31 @@ input:focus{
 
 
 /* users admin */
+header{
+    background-color: #607d8b;
+    color: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+header nav{
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+header nav div{
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
 .container{
     max-width: 1000px;
     margin: 0 auto;
@@ -57,6 +83,10 @@ input:focus{
 .title{
     text-align: center;
     font-size: 1.2em;
+}
+
+table{
+    margin: 0 auto;
 }
 
 table, tr, td, th

@@ -7,10 +7,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
-        <header><div>Bienvenido/a <?php echo $this->user ?></div><div><a href="<?php echo base_url('home/logout')?>">Salir</a></div></header>
+        <header>
+            <nav>
+                <div>Bienvenido/a <?php echo $this->user ?></div><div><a href="<?php echo base_url('home/logout')?>">SALIR</a></div>
+            </nav>
+        </header>
         <div class="container">
             <div class="title">Admin de usuarios</div>
-            
             <div>
                 <div class="btn add green">Añadir</div>
                 <table id="table">
