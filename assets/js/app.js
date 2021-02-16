@@ -29,16 +29,24 @@
     const form={
         el: false,
         data: false,
+        passChange: false,
         init: function(){
             form.el = document.getElementById('form');
             form.attachEvents();
         },
         attachEvents: function(){
+            var passInput = form.el.querySelector('input[name="password"]');
+            passInput.addEventListener('change', function(e){
+                form.passChange = true;
+            });
+
             form.el.addEventListener('submit', function(e){
                 e.preventDefault();    //stop form from submitting
                 var data = new FormData(form.el);
-                if( form.data )
+                if( form.data ){
                     data.append('id', form.data.id);
+                }
+                data.append('password_change', form.passChange);
                 var operation = form.data && form.data.id ? 'update' : 'insert';
                 ajax.post(baseUrl + 'user/' + operation, function(response){
                     if( response.success ){
@@ -54,6 +62,7 @@
                             fade.in(table.el.parentElement); 
                         });
                         form.data = false;
+                        form.passChange = false;
                     }
                     else{
                         message.info.show(response.message,'error');
@@ -73,7 +82,7 @@
             form.el.querySelectorAll('[name="name"]')[0].value= o ? o.name : '';
             form.el.querySelectorAll('[name="last_name"]')[0].value= o ? o.last_name : '';
             form.el.querySelectorAll('[name="email"]')[0].value= o ? o.email : '';
-            form.el.querySelectorAll('[name="password"]')[0].value= o ? 'FALSE' : '';
+            form.el.querySelectorAll('[name="password"]')[0].value= '';
         }
     }
 

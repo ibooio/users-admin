@@ -49,8 +49,7 @@
             $this->model->name = $_POST["name"];
             $this->model->last_name = $_POST["last_name"];
             $this->model->email = $_POST["email"];
-            $this->model->password = $_POST["password"];
-            
+            $this->model->password = $_POST["password_change"] == 'true' ? $_POST["password"] : false;
             $response = (object)array('success'=>false, 'message'=>false, 'data'=>false);
             if( !$this->model->validate() ){
                 $response->message = 'La dirección de correo ya se encuentra en uso';

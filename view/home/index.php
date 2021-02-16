@@ -11,7 +11,7 @@
                 <label>E-mail</label>
                 <input type="text" name="email" value="" placeholder="E-mail">
                 <label>Contraseña</label>
-                <input type="text" name="password" value="" placeholder="Contraseña">
+                <input type="password" name="password" value="" placeholder="Contraseña">
                 <input type="submit" class="btn green" value="ENTRAR">
             </form>
         </div>

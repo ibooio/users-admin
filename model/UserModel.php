@@ -43,9 +43,11 @@
                 'name' => $this->name,
                 'last_name' => $this->last_name,
                 'email' => $this->email,
-                'password' => $this->password ? hash('sha512', $this->password) : '',
                 'id'=> $this->crypt('openssl_decrypt',$this->id)
-            ];                
+            ];        
+            if( $this->password ){
+                $data['password'] = $this->password ? hash('sha512', $this->password) : '';
+            }
             $this->database->update($sql, $data);
         }
 
