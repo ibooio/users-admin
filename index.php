@@ -27,15 +27,12 @@
     $app_folder_parts = !$config['app_folder'] ? 0 : count( explode("/", $config['app_folder']) );
     $args = array_values(array_filter(explode("/", $_SERVER["REQUEST_URI"]), function($value) { return !is_null($value) && $value !== ''; }));    
 
-    $controller = count($args)>$app_folder_parts ? explode("?", $args[$app_folder_parts])[0] : "home";
-    $action =     count($args)> ($app_folder_parts + 1) ? explode("?", $args[$app_folder_parts+1])[0] : "index";
+    $controller = ucfirst(count($args)>$app_folder_parts ? explode("?", $args[$app_folder_parts])[0] : "home");
+    $action = ucfirst(count($args)> ($app_folder_parts + 1) ? explode("?", $args[$app_folder_parts+1])[0] : "index");
     
-
-    $controllerFile =  ucfirst($controller). '.php';
-    $controllerClass = ucfirst($controller). 'Controller';
-
-    require 'controller/'. $controllerFile;
-    $controller = $controllerClass;
-    $controller = new $controller();
-    $controller->$action();
+    require 'controller/'. $controller. '.php';
+    $controllerClass = $controller. 'Controller';
+    
+    $instance = new $controllerClass();
+    $instance->$action();
 ?>
