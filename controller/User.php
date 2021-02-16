@@ -1,14 +1,19 @@
 <?php
     class UserController{
         private $model;
+        private $user = false;
         public function __CONSTRUCT(){
             require_once 'model/UserModel.php';
             require_once 'database/Database.php';
             $db = new Database();
             $this->model =  new UserModel( $db );
+            $this->user = @$_SESSION['user'];
         }
 
-        public function Index(){
+        public function index(){
+            if( !@$_SESSION['user'] ){
+                header('Location: ' . base_url());
+            }
             require_once 'view/user/index.php';
         }
 

@@ -58,5 +58,11 @@
             return $result[0]->count == 0 ? true : false;
         }
 
+        public function login(){
+            $sql = "Select * FROM users WHERE email='". $this->email ."' and password='". $this->password ."'";
+            $result =  $this->database->select($sql);          
+            return count($result) == 1 ? $result[0] : false;
+        }
+
     }
 ?>

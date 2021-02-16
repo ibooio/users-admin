@@ -2,11 +2,12 @@
 <html>
     <head>
         <title>Login</title>
-        <link rel="stylesheet" href="assets/css/app.css" type="text/css">
+        <link rel="stylesheet" href="<?php echo base_url("assets/css/app.css")?>" type="text/css">
     </head>
     <body class="home">
         <div id="form-login-box">
-            <form action="user" method="test">
+        <?php echo $this->error_message ;?>
+            <form action="" method="post">
                 <label>E-mail</label>
                 <input type="text" name="email" value="" placeholder="E-mail">
                 <label>Contraseña</label>

@@ -1,5 +1,6 @@
 (function() {
 
+    const baseUrl = window.location .protocol + '//' + window.location.host + '/' + window.location.pathname.split('/')[1] + '/';
     var ajax = {
         get: function(url, callback, data){
             var xmlhttp = new XMLHttpRequest();
@@ -39,8 +40,7 @@
                 if( form.data )
                     data.append('id', form.data.id);
                 var operation = form.data && form.data.id ? 'update' : 'insert';
-                var url =  'user/' + operation;
-                ajax.post(url, function(response){
+                ajax.post(baseUrl + 'user/' + operation, function(response){
                     if( response.success ){
                         message.info.show(response.message,'success');
                         if( operation == 'insert' ){
@@ -86,7 +86,8 @@
             table.loadData();
         },
         loadData: function(){
-            ajax.get("user/get_all", function(response){
+
+            ajax.get(baseUrl +  'user/get_all', function(response){
                 table.data = response;
                 table.drawBody();
             }); 
@@ -157,7 +158,7 @@
                             var data = new FormData(form.el);
                             var id= e.target.parentElement.parentElement.getAttribute('data-id');
                             data.append('id',  id);
-                            ajax.post('user/delete', function(response){
+                            ajax.post(baseUrl + 'user/delete', function(response){
                                 table.delete(id);
                                 fade.out(form.el.parentElement, function() {
                                     fade.in(table.el.parentElement); 
@@ -284,3 +285,4 @@
     init();
 
 })();
+
