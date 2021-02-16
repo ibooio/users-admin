@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Administrador de usuarios</title>
+        <link rel="shortcut icon" href="<?php echo base_url("assets/favicon.ico")?>" type="image/x-icon" />
         <link rel="stylesheet" href="<?php echo base_url("assets/css/app.css")?>" type="text/css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
