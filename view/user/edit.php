@@ -5,7 +5,7 @@
         <label>Apellido</label>
         <input type="text" name="last_name" value="" placeholder="Apellido">
         <label>E-mail</label>
-        <input type="text" name="email" value=""  placeholder="E-mail">
+        <input type="email" name="email" value=""  placeholder="E-mail">
         <label>Contraseña</label>
         <input type="password" name="password" value="" placeholder="Contraseña"> 
         <input type="submit" class="btn green" value="Enviar">
