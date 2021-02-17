@@ -1,4 +1,9 @@
 <?php
+    /*
+        Este controlador es el que se llama por defecto
+        contiene la lógica del login y el logout
+        en caso de login correcto redirecciona a User/index
+    */
     class HomeController{
         private $model;
         private $error_message = '';

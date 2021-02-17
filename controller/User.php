@@ -1,4 +1,7 @@
 <?php
+    /*
+        Este controlador muestra y recibe solicitudes de la vista CRUD de usuarios
+    */
     class UserController{
         private $model;
         private $user = false;
@@ -10,6 +13,7 @@
             $this->user = @$_SESSION['user'];
         }
 
+        /* Método que carga la vista y en ella los archivos necesarios*/
         public function index(){
             if( !@$_SESSION['user'] ){
                 header('Location: ' . base_url(''));
@@ -18,13 +22,13 @@
             require_once 'view/user/index.php';
         }
 
-        // get all users
+        // Devuelve todos los usuarios para que sean mostrados en una tabla
         public function get_all(){
             $result = $this->model->get_all();
             echo json_encode($result);
         }
 
-        // insert user
+        // recibe datos de un usuario a insertar
         public function insert(){
             $this->model->name = $_POST["name"];
             $this->model->last_name = $_POST["last_name"];
@@ -44,7 +48,7 @@
             echo json_encode($response);
         }
 
-        //  update user
+        // recibe datos de un usuario a actualizar
         public function update(){
             $this->model->id = $_POST["id"];
             $this->model->name = $_POST["name"];
@@ -65,7 +69,7 @@
 
         }
 
-        //  delete user
+        // recibe datos de un usuario a eliminar
         public function delete(){
             $this->model->id = $_POST["id"];
             $this->model->delete();
