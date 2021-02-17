@@ -7,9 +7,9 @@
     </head>
     <body class="home">
         <div id="form-login-box">
-        
             <form action="" method="post" autocomplete="off">
-                <div><?php echo $this->error_message ;?></div>
+                <div class="title">Inicio de sesión</div>
+                <div class="error"><?php echo $this->error_message ;?></div>
                 <label>E-mail</label>
                 <input type="email" name="email" value="" placeholder="E-mail" required>
                 <label>Contraseña</label>
@@ -17,5 +17,6 @@
                 <input type="submit" class="btn green" value="ENTRAR">
             </form>
         </div>
+        <footer><a href="https://github.com/ibooio/users-admin" target="_blank">GitHub</a></footer>
     </body>
 </html>
