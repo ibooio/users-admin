@@ -92,6 +92,10 @@ header a{
     font-size: 1.2em;
 }
 
+.add{
+    margin-left: 150px !important;
+}
+
 table{
     margin: 0 auto;
 }
@@ -130,9 +134,6 @@ table td{
     cursor: pointer;
 }
 
-table{
-
-}
 #form-box{
     display: none;
 }
