@@ -180,10 +180,16 @@ table td{
     width: max-content;
     background-color: #ccc;
     border-radius: 15px;
-    position: fixed;
-    top: 30%;
-    left: 45%;
+    width: 400px;
     display: none;
+}
+
+.message{
+    width: 300px;
+}
+
+.message-confirm{
+    width: 400px;
 }
 
 .message > .header, .message-confirm > .header{
