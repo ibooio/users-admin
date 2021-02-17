@@ -78,11 +78,19 @@
             });
         },
         setData: function(o){
+            if( o )/* en un update no queremos que el atriburo required exista */
+                form.el.querySelectorAll('[name="password"]')[0].required = false;
+            else /* en un insert sí lo queremos */
+                form.el.querySelectorAll('[name="password"]')[0].required = true;
+
+            
+            /* setemoa el valor de los inputs */
+            /* en un insert el valor es '' */
             form.data = o;
             form.el.querySelectorAll('[name="name"]')[0].value= o ? o.name : '';
             form.el.querySelectorAll('[name="last_name"]')[0].value= o ? o.last_name : '';
             form.el.querySelectorAll('[name="email"]')[0].value= o ? o.email : '';
-            form.el.querySelectorAll('[name="password"]')[0].value= 'FALSEPASS';
+            form.el.querySelectorAll('[name="password"]')[0].value= '';
         }
     }
 
@@ -95,7 +103,6 @@
             table.loadData();
         },
         loadData: function(){
-
             ajax.get(baseUrl +  'user/get_all', function(response){
                 table.data = response;
                 table.drawBody();
